@@ -4,28 +4,27 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStream
 
-class Main {
- companion object {
-     @JvmStatic fun main(args: Array<String>) {
-         val inputs: MutableList<InputStream> = mutableListOf()
-         for (pdfFileName in args) {
-             val fis =
-                 try {
-                     println("looking up " + pdfFileName)
-                     FileInputStream(pdfFileName)
-                 } catch (e: Exception) {
-                     println(pdfFileName + " not found!")
-                     null
-                 }
-             if (fis != null) {
-                 inputs.add(fis)
-             }
-         }
 
-         val mergedPdfDocument = MergeTool().mergePdfDocuments(inputs)
-         val fos = FileOutputStream("merged-pdf-file.pdf")
-         fos.write(mergedPdfDocument)
-         fos.close()
-     }
- }
+class Main {
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+
+            val argumentHandler = ArgumentHandler(args)
+
+            if (argumentHandler.inputs.size == 0) {
+                println("No input files given or given input files cannot be found")
+                return
+            }
+
+            val inputs: MutableList<InputStream> = argumentHandler.inputs
+
+            val mergedPdfDocument = MergeTool().mergePdfDocuments(inputs)
+
+            println("Writing merged PDF document to ${argumentHandler.outputPath}")
+            val fileOutputStream = FileOutputStream(argumentHandler.outputPath)
+            fileOutputStream.write(mergedPdfDocument)
+            fileOutputStream.close()
+        }
+    }
 }

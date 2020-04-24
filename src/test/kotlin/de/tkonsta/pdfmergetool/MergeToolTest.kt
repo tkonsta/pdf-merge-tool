@@ -1,7 +1,11 @@
 package de.tkonsta.pdfmergetool
 
+import org.apache.pdfbox.cos.COSName
+import org.apache.pdfbox.pdmodel.PDDocument
+import org.apache.pdfbox.pdmodel.PDPage
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.io.FileInputStream
 
 internal class MergeToolTest {
 
@@ -30,5 +34,4 @@ internal class MergeToolTest {
         )
         assertThat(mergedPdfDocument).hasSizeGreaterThan(0)
     }
-
 }
