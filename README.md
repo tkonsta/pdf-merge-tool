@@ -7,6 +7,6 @@ Usage:
 
     java -jar pdf-merge-tool-1.0-SNAPSHOT-jar-with-dependencies.jar -i <pdf-files> [-o outputFile]
     
-    java -jar pdf-merge-tool-1.0-SNAPSHOT-jar-with-dependencies.jar -i <text-file-list>  [-o outputFile]
+    java -jar pdf-merge-tool-1.0-SNAPSHOT-jar-with-dependencies.jar -l <text-file-list>  [-o outputFile]
 
     
